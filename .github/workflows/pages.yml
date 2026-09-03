@@ -32,20 +32,17 @@ jobs:
       - name: Build game
         run: npm run build
 
-      - name: Include Christmas tree app and local gesture runtime
+      - name: Include Christmas tree app with Tasks Vision
         run: |
-          mkdir -p github-pages-dist/christmas-tree/vendor
+          mkdir -p github-pages-dist/christmas-tree/vendor/wasm
           cp christmas-tree/index.html github-pages-dist/christmas-tree/index.html
           cp christmas-tree/app.js github-pages-dist/christmas-tree/app.js
-          cp node_modules/@mediapipe/camera_utils/camera_utils.js github-pages-dist/christmas-tree/vendor/camera_utils.js
-          cp node_modules/@mediapipe/hands/hands.js github-pages-dist/christmas-tree/vendor/hands.js
-          cp node_modules/@mediapipe/hands/hands_solution_packed_assets.data github-pages-dist/christmas-tree/vendor/hands_solution_packed_assets.data
-          cp node_modules/@mediapipe/hands/hands_solution_packed_assets_loader.js github-pages-dist/christmas-tree/vendor/hands_solution_packed_assets_loader.js
-          cp node_modules/@mediapipe/hands/hands_solution_simd_wasm_bin.js github-pages-dist/christmas-tree/vendor/hands_solution_simd_wasm_bin.js
-          cp node_modules/@mediapipe/hands/hands_solution_simd_wasm_bin.wasm github-pages-dist/christmas-tree/vendor/hands_solution_simd_wasm_bin.wasm
-          cp node_modules/@mediapipe/hands/hands_solution_wasm_bin.js github-pages-dist/christmas-tree/vendor/hands_solution_wasm_bin.js
-          cp node_modules/@mediapipe/hands/hands_solution_wasm_bin.wasm github-pages-dist/christmas-tree/vendor/hands_solution_wasm_bin.wasm
           cp node_modules/three/build/three.min.js github-pages-dist/christmas-tree/vendor/three.min.js
+          cp node_modules/@mediapipe/tasks-vision/vision_bundle.mjs github-pages-dist/christmas-tree/vendor/vision_bundle.mjs
+          cp -r node_modules/@mediapipe/tasks-vision/wasm/* github-pages-dist/christmas-tree/vendor/wasm/
+          curl -L --fail --retry 3 \
+            https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task \
+            -o github-pages-dist/christmas-tree/vendor/gesture_recognizer.task
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
