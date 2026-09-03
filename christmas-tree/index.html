@@ -6,16 +6,51 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Gesture Christmas Tree</title>
   <style>
-    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020304;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}#app{position:fixed;inset:0}canvas{display:block}.hud{position:fixed;inset:0;pointer-events:none}.title{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-size:clamp(17px,2vw,28px);letter-spacing:.18em;font-weight:800;text-shadow:0 0 28px rgba(255,215,120,.65);white-space:nowrap}.status{position:absolute;left:18px;bottom:18px;padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(12px);font-size:13px;line-height:1.65;max-width:min(440px,calc(100vw - 36px))}.legend{position:absolute;right:18px;bottom:18px;padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(12px);font-size:12px;line-height:1.75;color:#f4e9cf}.cameraWrap{display:none;position:fixed;right:18px;top:18px;width:200px;height:150px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:#0a0c0f;box-shadow:0 12px 40px rgba(0,0,0,.35)}.cameraWrap.active{display:block}.camera,.handCanvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}.camera{opacity:.72}.handCanvas{pointer-events:none}.pill{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffd76b;margin-right:7px;box-shadow:0 0 12px #ffd76b}.error{color:#ff9e9e}.launcher{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;width:min(500px,calc(100vw - 32px));padding:24px;border-radius:22px;border:1px solid rgba(255,255,255,.16);background:rgba(5,7,10,.92);backdrop-filter:blur(18px);box-shadow:0 24px 90px rgba(0,0,0,.55);text-align:center}.launcher.hidden{display:none}.launcher h2{margin:0 0 10px;font-size:25px}.launcher p{margin:0 0 18px;color:#d8d4ca;font-size:14px;line-height:1.65}.launcher button{appearance:none;border:0;border-radius:999px;padding:13px 22px;font-size:15px;font-weight:800;background:linear-gradient(135deg,#ffe08a,#ffb64d);color:#1a1306;cursor:pointer}.launcher button:disabled{opacity:.55;cursor:default}.launcher small{display:block;margin-top:12px;color:#9f9a90;line-height:1.5}.manual{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:10;display:flex;gap:8px;pointer-events:auto}.manual button{border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.42);color:#fff;border-radius:999px;padding:8px 12px;cursor:pointer;backdrop-filter:blur(8px)}@media(max-width:760px){.cameraWrap{width:132px;height:99px}.legend{display:none}.manual{bottom:92px;flex-wrap:wrap;justify-content:center;width:92%}.title{top:14px}.status{left:12px;bottom:12px}}
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020304;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}#app{position:fixed;inset:0;z-index:0}#app canvas{position:absolute;inset:0;z-index:0;pointer-events:none}.hud{position:fixed;inset:0;z-index:5;pointer-events:none}.title{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-size:clamp(17px,2vw,28px);letter-spacing:.18em;font-weight:800;text-shadow:0 0 28px rgba(255,215,120,.65);white-space:nowrap}.status{position:absolute;left:18px;bottom:18px;padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(12px);font-size:13px;line-height:1.65;max-width:min(440px,calc(100vw - 36px))}.legend{position:absolute;right:18px;bottom:18px;padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(12px);font-size:12px;line-height:1.75;color:#f4e9cf}.cameraWrap{display:none;position:fixed;z-index:30;right:18px;top:18px;width:200px;height:150px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.18);background:#0a0c0f;box-shadow:0 12px 40px rgba(0,0,0,.35)}.cameraWrap.active{display:block}.camera,.handCanvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}.camera{opacity:.72}.handCanvas{pointer-events:none}.pill{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffd76b;margin-right:7px;box-shadow:0 0 12px #ffd76b}.error{color:#ff9e9e}.launcher{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;width:min(500px,calc(100vw - 32px));padding:24px;border-radius:22px;border:1px solid rgba(255,255,255,.16);background:rgba(5,7,10,.96);box-shadow:0 24px 90px rgba(0,0,0,.65);text-align:center;pointer-events:auto}.launcher.hidden{display:none}.launcher h2{margin:0 0 10px;font-size:25px}.launcher p{margin:0 0 18px;color:#d8d4ca;font-size:14px;line-height:1.65}.launcher button{position:relative;z-index:10000;pointer-events:auto;touch-action:manipulation;appearance:none;border:0;border-radius:999px;padding:14px 24px;font-size:16px;font-weight:800;background:linear-gradient(135deg,#ffe08a,#ffb64d);color:#1a1306;cursor:pointer}.launcher button:disabled{opacity:.55;cursor:default}.launcher small{display:block;margin-top:12px;color:#9f9a90;line-height:1.5}.manual{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:20;display:flex;gap:8px;pointer-events:auto}.manual button{border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.42);color:#fff;border-radius:999px;padding:8px 12px;cursor:pointer;backdrop-filter:blur(8px)}@media(max-width:760px){.cameraWrap{width:132px;height:99px}.legend{display:none}.manual{bottom:92px;flex-wrap:wrap;justify-content:center;width:92%}.title{top:14px}.status{left:12px;bottom:12px}}
   </style>
-  <script src="./vendor/three.min.js?v=tasksvision1"></script>
+  <script src="./vendor/three.min.js?v=tasksvision2"></script>
 </head>
 <body>
   <div id="app"></div>
-  <div id="cameraWrap" class="cameraWrap"><video id="camera" class="camera" playsinline muted></video><canvas id="handCanvas" class="handCanvas" width="640" height="480"></canvas></div>
-  <div id="launcher" class="launcher"><h2>🎄 手势圣诞树 · 新识别引擎</h2><p>这版已经完全删除旧 MediaPipe Hands。点击按钮后才会请求摄像头权限，并使用新版 Tasks Vision Gesture Recognizer。</p><button id="startBtn">启用手势控制</button><small>未点击前不会访问摄像头。若启动失败，按钮会恢复并显示具体错误。</small></div>
+  <div id="cameraWrap" class="cameraWrap"><video id="camera" class="camera" playsinline muted autoplay></video><canvas id="handCanvas" class="handCanvas" width="640" height="480"></canvas></div>
+  <div id="launcher" class="launcher"><h2>🎄 手势圣诞树 · 新识别引擎</h2><p>这次按钮和识别引擎彻底分开：点击按钮会先直接启动摄像头，然后再启动手势识别。</p><button id="startBtn" type="button">启用手势控制</button><small id="launchNote">未点击前不会访问摄像头。</small></div>
   <div class="hud"><div class="title">GESTURE CHRISTMAS TREE</div><div class="status"><div><span class="pill"></span><span id="status">等待你点击“启用手势控制”</span></div><div id="gesture">手势：未启动</div><div id="theme">主题：经典圣诞</div><div id="error" class="error"></div></div><div class="legend">✊ Closed Fist：聚合 + 旋转<br>🖐 Open Palm：散开<br>☝ Pointing Up：换色<br>✌ Victory：飘雪<br>🤟 三指：烟花</div></div>
   <div class="manual"><button data-action="gather">聚合</button><button data-action="burst">散开</button><button data-action="theme">换色</button><button data-action="snow">飘雪</button><button data-action="firework">烟花</button></div>
-  <script type="module" src="./app.js?v=tasksvision1"></script>
+  <script>
+    (()=>{
+      const btn=document.getElementById('startBtn');
+      const launcher=document.getElementById('launcher');
+      const note=document.getElementById('launchNote');
+      const cameraWrap=document.getElementById('cameraWrap');
+      const video=document.getElementById('camera');
+      const status=document.getElementById('status');
+      const error=document.getElementById('error');
+      let busy=false;
+      btn.onclick=async()=>{
+        if(busy)return;
+        busy=true;btn.disabled=true;note.textContent='正在请求摄像头权限…';error.textContent='';status.textContent='正在请求摄像头权限…';
+        try{
+          const stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640},height:{ideal:480}},audio:false});
+          video.srcObject=stream;
+          await video.play();
+          launcher.classList.add('hidden');
+          cameraWrap.classList.add('active');
+          status.textContent='摄像头已开启 · 正在启动手势识别引擎…';
+          window.__gestureCameraStream=stream;
+          window.dispatchEvent(new CustomEvent('gesture-camera-ready',{detail:{stream}}));
+          setTimeout(()=>{
+            if(!window.__gestureEngineReady){
+              status.textContent='摄像头正常 · 手势识别引擎未加载';
+              error.textContent='识别模块没有成功启动；摄像头本身已正常。';
+            }
+          },3000);
+        }catch(err){
+          console.error(err);busy=false;btn.disabled=false;launcher.classList.remove('hidden');cameraWrap.classList.remove('active');
+          note.textContent='摄像头启动失败，可重新点击尝试。';status.textContent='摄像头启动失败';error.textContent=err?.message||String(err);
+        }
+      };
+    })();
+  </script>
+  <script type="module" src="./app.js?v=tasksvision2"></script>
 </body>
 </html>
