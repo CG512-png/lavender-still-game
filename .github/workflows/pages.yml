@@ -32,6 +32,12 @@ jobs:
       - name: Build game
         run: npm run build
 
+      - name: Include Christmas tree app
+        run: |
+          mkdir -p github-pages-dist/christmas-tree
+          cp christmas-tree/index.html github-pages-dist/christmas-tree/index.html
+          cp christmas-tree/app.js github-pages-dist/christmas-tree/app.js
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
