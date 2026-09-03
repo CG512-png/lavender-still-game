@@ -344,26 +344,42 @@ export default function Home() {
   const textTick = (index: number, character: string) => {
     const ctx = audioRef.current;
     const output = sfxBusRef.current;
-    if (!ctx || !output || !soundOnRef.current || index % 3 !== 0 || /[，。！？、：“”……\s]/.test(character)) return;
-    const duration = .045;
+    if (!ctx || !output || !soundOnRef.current || index % 2 !== 0 || /[，。！？、：“”……\s]/.test(character)) return;
+    if (ctx.state === "suspended") void ctx.resume().catch(() => undefined);
+    const duration = .052;
     const buffer = ctx.createBuffer(1, Math.max(1, Math.floor(ctx.sampleRate * duration)), ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < data.length; i += 1) {
-      const envelope = Math.exp(-i / (ctx.sampleRate * .012));
+      const envelope = Math.exp(-i / (ctx.sampleRate * .016));
       data[i] = (Math.random() * 2 - 1) * envelope;
     }
     const paper = ctx.createBufferSource();
-    const filter = ctx.createBiquadFilter();
-    const gain = ctx.createGain();
-    filter.type = "bandpass";
-    filter.frequency.value = innerMonologue ? 1050 : 1450;
-    filter.Q.value = .55;
-    gain.gain.setValueAtTime(.0001, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(innerMonologue ? .0032 : .0042, ctx.currentTime + .01);
-    gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + duration);
+    const paperFilter = ctx.createBiquadFilter();
+    const paperGain = ctx.createGain();
+    const bell = ctx.createOscillator();
+    const bellFilter = ctx.createBiquadFilter();
+    const bellGain = ctx.createGain();
+    const now = ctx.currentTime;
+    paperFilter.type = "bandpass";
+    paperFilter.frequency.value = innerMonologue ? 920 : 1260;
+    paperFilter.Q.value = .48;
+    paperGain.gain.setValueAtTime(.0001, now);
+    paperGain.gain.linearRampToValueAtTime(innerMonologue ? .0105 : .0135, now + .008);
+    paperGain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+    bell.type = "sine";
+    bell.frequency.setValueAtTime((innerMonologue ? 620 : 760) + (index % 5) * 13, now);
+    bell.frequency.exponentialRampToValueAtTime(innerMonologue ? 570 : 690, now + .042);
+    bellFilter.type = "lowpass";
+    bellFilter.frequency.value = 1450;
+    bellGain.gain.setValueAtTime(.0001, now);
+    bellGain.gain.linearRampToValueAtTime(innerMonologue ? .012 : .016, now + .006);
+    bellGain.gain.exponentialRampToValueAtTime(.0001, now + .058);
     paper.buffer = buffer;
-    paper.connect(filter).connect(gain).connect(output);
-    paper.start();
+    paper.connect(paperFilter).connect(paperGain).connect(output);
+    bell.connect(bellFilter).connect(bellGain).connect(output);
+    paper.start(now);
+    bell.start(now);
+    bell.stop(now + .065);
   };
 
   const playBreath = (strength = 1) => {
@@ -383,6 +399,19 @@ export default function Home() {
   useEffect(() => {
     soundOnRef.current = soundOn;
   }, [soundOn]);
+
+  useEffect(() => {
+    const wakeAudio = () => {
+      const ctx = audioRef.current;
+      if (ctx?.state === "suspended") void ctx.resume().catch(() => undefined);
+    };
+    window.addEventListener("pointerdown", wakeAudio, { passive: true });
+    window.addEventListener("keydown", wakeAudio);
+    return () => {
+      window.removeEventListener("pointerdown", wakeAudio);
+      window.removeEventListener("keydown", wakeAudio);
+    };
+  }, []);
 
   useEffect(() => {
     const syncFullscreen = () => setIsFullscreen(Boolean(document.fullscreenElement));
