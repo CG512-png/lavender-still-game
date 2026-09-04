@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 
 type ImageKey = "auditorium" | "deskmates" | "ceremonybefore" | "ceremony" | "ceremonyafter" | "night" | "stars" | "stairwell" | "treepath" | "library" | "studio";
-type Interaction = "projector" | "find" | "desks" | "photo" | "qqchat" | "evidence" | "tremble" | "examplan" | "loop" | "walk" | "lookback" | "closechat" | "keepsake" | "endingchoice" | "rebuild" | "reframe";
+type Interaction = "projector" | "find" | "desks" | "photo" | "anchor" | "qqchat" | "evidence" | "tremble" | "threenights" | "examplan" | "loop" | "walk" | "lookback" | "closechat" | "keepsake" | "endingchoice" | "rebuild" | "reframe" | "songrewrite" | "turnpage";
 type EndingRoute = "stayed" | "healed";
 type ExamStats = { focus: number; sleep: number; anxiety: number };
 type Beat = {
@@ -114,6 +114,14 @@ const beats: Beat[] = [
   { kind: "dialogue", image: "ceremonyafter", chapter: "第三幕 · 成人礼", date: "那天以后", speaker: "我", text: "变化是从那天才开始的。以前自然的关心忽然有了重量，连一次普通的对视，我都会在回去以后想很久。", mood: "quiet" },
   { kind: "dialogue", image: "ceremonyafter", chapter: "第三幕 · 成人礼", date: "那天以后", speaker: "我", text: "不是过去早就藏着爱情。是我在高三的成人礼以后，才第一次意识到：我好像喜欢上她了。", mood: "quiet" },
 
+  { kind: "title", image: "ceremonyafter", chapter: "第三幕 · 余波", date: "成人礼后的第七天", title: "锚点", subtitle: "一句玩笑没有改变过去，却改变了我观看过去的方式。", mood: "pulse" },
+  { kind: "dialogue", image: "ceremonyafter", chapter: "锚点 · 相册", date: "22:36", speaker: "我", text: "照片已经看过很多遍了。我还是会把画面放大，停在我们肩膀之间不到半步的距离。", mood: "quiet" },
+  { kind: "dialogue", image: "deskmates", chapter: "锚点 · 两层楼", date: "第二天课间", speaker: "我", text: "我从二楼窗边看见她经过一楼走廊。以前我会直接喊她，这一次，我先想起了那句“祝我们99”。", mood: "pulse" },
+  { kind: "dialogue", image: "deskmates", chapter: "锚点 · 两层楼", date: "十秒以后", speaker: "我", text: "最后我什么也没喊。不是因为发生了什么，而是从那天起，每一个原本自然的动作，都多了一层需要解释的意思。", mood: "quiet" },
+  { kind: "interaction", image: "ceremonyafter", chapter: "锚点 · 合照", date: "MEMORY ANCHOR / 99", interaction: "anchor", mood: "pulse" },
+  { kind: "dialogue", image: "ceremonyafter", chapter: "锚点 · 重新观看", date: "后来", speaker: "我", text: "我开始重新审阅过去：同桌时递来的草稿纸、楼梯口停下的几分钟、每一次自然的关心。", mood: "quiet" },
+  { kind: "dialogue", image: "ceremonyafter", chapter: "锚点 · 重新观看", date: "后来", speaker: "我", text: "可过去并没有偷偷藏着一个答案。真正改变的是现在的我——我第一次允许自己，把她想成了喜欢的人。", mood: "warm" },
+
   { kind: "title", image: "night", chapter: "第四幕", date: "成人礼以后", title: "屏幕亮起", subtitle: "从一楼到二楼的距离，后来变成了更远的地方。", mood: "rain" },
   { kind: "dialogue", image: "night", chapter: "第四幕 · 转学", date: "高三", speaker: "她", text: "我要转学了。下周走。", mood: "rain" },
   { kind: "dialogue", image: "night", chapter: "第四幕 · 转学", date: "高三", speaker: "我", text: "我愣了一下，手机从膝盖滑到地上。屏幕裂开一道细纹，像一句没来得及说完的话。", mood: "rain" },
@@ -136,6 +144,13 @@ const beats: Beat[] = [
   { kind: "dialogue", image: "stars", chapter: "幕间 · 夜空", date: "23:43", speaker: "我", text: "先考出去再说。你呢？", mood: "quiet" },
   { kind: "dialogue", image: "stars", chapter: "幕间 · 夜空", date: "23:44", speaker: "她", text: "我想去更远的地方看看。", mood: "quiet" },
   { kind: "dialogue", image: "stars", chapter: "幕间 · 夜空", date: "23:45", speaker: "我", text: "那一分钟很浪漫。也很诚实。我们都在谈未来，却谁也没有说过，未来必须把两个人写在同一行。", mood: "quiet" },
+
+  { kind: "title", image: "night", chapter: "第五幕 · 前夜", date: "二模前三天", title: "三夜未眠", subtitle: "越接近见面的日子，越无法把心留在今天。", mood: "rain" },
+  { kind: "dialogue", image: "night", chapter: "三夜未眠 · 第一夜", date: "距离见面 72 小时", speaker: "我", text: "第一夜，我把同一道物理题读了六遍。QQ头像没有亮，我却每隔几分钟就确认一次。", mood: "rain" },
+  { kind: "dialogue", image: "night", chapter: "三夜未眠 · 第二夜", date: "距离见面 46 小时", speaker: "我", text: "第二夜，我在草稿纸背面写下见面时想说的话。写到最后，连一句普通的“最近怎么样”都显得刻意。", mood: "pulse" },
+  { kind: "dialogue", image: "night", chapter: "三夜未眠 · 第三夜", date: "距离见面 19 小时", speaker: "我", text: "第三夜，台灯照着准考证和错题本。我明明在准备一场考试，心里排练的却只有明天擦肩时应该看向哪里。", mood: "pulse" },
+  { kind: "interaction", image: "night", chapter: "三夜未眠 · 天亮以前", date: "03:17", interaction: "threenights", mood: "rain" },
+  { kind: "dialogue", image: "night", chapter: "三夜未眠 · 清晨", date: "05:43", speaker: "我", text: "天亮时，三件很小的事留在桌上：翻过去的手机、没有发出的长句、被圈出来的三道题。它们没有让我平静，只让我没有彻底失去今天。", mood: "quiet" },
 
   { kind: "title", image: "stairwell", chapter: "第五幕", date: "二模", title: "证据", subtitle: "人会不会因为一个回头，替一段关系写完所有以后？", mood: "pulse" },
   { kind: "dialogue", image: "stairwell", chapter: "第五幕 · 二模", date: "她回校的第一天", speaker: "我", text: "她回来考试的前三天，我几乎没睡。真正见到她时，我却只敢从楼梯另一边经过。", mood: "pulse" },
@@ -214,6 +229,8 @@ const endingBeats: Record<EndingRoute, Beat[]> = {
     { kind: "dialogue", image: "night", chapter: "回声 · 日历", date: "毕业那天", speaker: "我", text: "所有人都在拍新的合照。我站在人群里笑，心里仍旧把十八岁的那张照片放在最前面。", mood: "quiet" },
     { kind: "dialogue", image: "night", chapter: "回声 · 未发送", date: "屏幕熄灭前", speaker: "我", text: "我仍然想知道她有没有一瞬间后悔，仍然想用她的答案，决定该怎样评价当年的自己。", mood: "pulse" },
     { kind: "dialogue", image: "night", chapter: "回声 · 未发送", date: "现在", speaker: "我", text: "我不是没有走到后来。我只是把后来的许多路，都走成了返回从前的方向。", mood: "quiet" },
+    { kind: "interaction", image: "night", chapter: "回声 · 循环", date: "MEMORY LOOP / ∞", interaction: "loop", mood: "rain" },
+    { kind: "dialogue", image: "night", chapter: "回声 · 循环", date: "又一次天亮", speaker: "我", text: "我又把同样的四句话想完一遍。窗外已经换了季节，记忆里的蝉还停在那年夏天。", mood: "rain" },
     { kind: "title", image: "night", chapter: "未完成结局", date: "时间仍在继续", title: "灯没有关", subtitle: "这不是失败。只是此刻的你，还没有准备好把答案还给自己。", mood: "rain" },
   ],
   healed: [
@@ -229,6 +246,8 @@ const endingBeats: Record<EndingRoute, Beat[]> = {
     { kind: "dialogue", image: "library", chapter: "重建 · 半年", date: "大一 · 夏", speaker: "我", text: "某天整理收藏夹，我才发现自己已经一个月没有点进她的主页。不是忍住了，是那段时间里有了更想完成的事情。", mood: "summer" },
     { kind: "title", image: "studio", chapter: "重建线 · 第二章", date: "大二至毕业", title: "把人生写回主语", subtitle: "当生活重新变得具体，回忆就不再占满全部画面。", mood: "summer" },
     { kind: "dialogue", image: "studio", chapter: "重建 · 创作", date: "大二 · 秋", speaker: "我", text: "我把那首没写完的歌重新打开。最初每一句都在问她为什么离开，后来我删掉问题，开始写那个留在原地的自己。", mood: "quiet" },
+    { kind: "interaction", image: "studio", chapter: "重建 · 创作", date: "未完成的第三稿", interaction: "songrewrite", mood: "warm" },
+    { kind: "dialogue", image: "studio", chapter: "重建 · 创作", date: "凌晨 00:26", speaker: "我", text: "旧句没有被否定。它们只是完成了当年的任务：替那个不敢开口的我，把舍不得唱出来。", mood: "quiet" },
     { kind: "dialogue", image: "studio", chapter: "重建 · 创作", date: "第一个完成的夜晚", speaker: "我", text: "作品完成时，我没有想象她会不会听见。我第一次只是因为自己终于做成了一件事而高兴。", mood: "warm" },
     { kind: "dialogue", image: "studio", chapter: "重建 · 生活", date: "后来的一年", speaker: "我", text: "我认识新朋友，做新的项目，给家里打电话，跑完第一个五公里，也去过一些和她毫无关系的地方。", mood: "summer" },
     { kind: "dialogue", image: "studio", chapter: "重建 · 生活", date: "一个普通周末", speaker: "朋友", text: "今天去哪？", mood: "warm" },
@@ -244,6 +263,11 @@ const endingBeats: Record<EndingRoute, Beat[]> = {
     { kind: "dialogue", image: "treepath", chapter: "自己的夏天 · 绿荫道", date: "记忆深处", speaker: "现在的我", text: "如果能回到那天，我不会催他放下，也不会告诉他以后一定会遇见更好的人。", mood: "summer" },
     { kind: "dialogue", image: "treepath", chapter: "自己的夏天 · 绿荫道", date: "记忆深处", speaker: "现在的我", text: "我只会坐在他旁边，等他哭完，再告诉他：你当年的认真没有错。没有被选择，也不是你的错。", mood: "summer" },
     { kind: "dialogue", image: "treepath", chapter: "自己的夏天 · 绿荫道", date: "记忆深处", speaker: "现在的我", text: "我们不必把她留住，才能把那段青春带走。走吧，我来接你回家。", mood: "summer" },
+    { kind: "title", image: "library", chapter: "终章", date: "又一个普通下午", title: "下一页", subtitle: "有些人仍然想得起来，有些日子已经不需要回去。", mood: "warm" },
+    { kind: "dialogue", image: "library", chapter: "终章 · 书页", date: "16:17", speaker: "书页", text: "现在，想象她的样子。", mood: "warm" },
+    { kind: "dialogue", image: "library", chapter: "终章 · 书页", date: "16:18", speaker: "现在的我", text: "我仍然能想起她。马尾、淡紫色头绳、阳光里的侧脸，都没有因为我继续生活而消失。", mood: "quiet" },
+    { kind: "interaction", image: "library", chapter: "终章 · 书页", date: "PAGE / NEXT", interaction: "turnpage", mood: "warm" },
+    { kind: "dialogue", image: "library", chapter: "终章 · 下一页", date: "16:19", speaker: "现在的我", text: "我还是能想起她。只是这一次，我把书翻了过去。", mood: "warm" },
     { kind: "title", image: "studio", chapter: "治愈结局", date: "天亮以后", title: "我也记得自己了", subtitle: "谢谢你经过我的青春。剩下的路，我会好好走。", mood: "summer" },
   ],
 };
@@ -314,6 +338,8 @@ export default function Home() {
   const [examStats, setExamStats] = useState<ExamStats>({ focus: 58, sleep: 46, anxiety: 74 });
   const [examLog, setExamLog] = useState<string[]>([]);
   const [rebuildChoices, setRebuildChoices] = useState<string[]>([]);
+  const [nightStep, setNightStep] = useState(0);
+  const [songLines, setSongLines] = useState<string[]>([]);
   const [controllerConnected, setControllerConnected] = useState(false);
   const [saveSlots, setSaveSlots] = useState<Array<number | null>>([null, null, null]);
   const stageRef = useRef<HTMLElement>(null);
@@ -776,13 +802,33 @@ export default function Home() {
     oscillator.stop(ctx.currentTime + duration + .09);
   };
 
-  const foley = (kind: "page" | "shutter" | "message") => {
+  const foley = (kind: "page" | "shutter" | "message" | "pencil") => {
     const ctx = audioRef.current;
     const output = sfxBusRef.current;
     if (!ctx || !output || !soundOnRef.current) return;
     if (kind === "message") {
       tone(659.25, .11, .032);
       window.setTimeout(() => tone(880, .16, .027), 95);
+      return;
+    }
+    if (kind === "pencil") {
+      const duration = .18;
+      const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * duration), ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < data.length; i += 1) {
+        const t = i / data.length;
+        data[i] = (Math.random() * 2 - 1) * Math.sin(Math.PI * t) * (1 - t) * .5;
+      }
+      const source = ctx.createBufferSource();
+      const filter = ctx.createBiquadFilter();
+      const gain = ctx.createGain();
+      filter.type = "bandpass";
+      filter.frequency.value = 1320;
+      filter.Q.value = .7;
+      gain.gain.value = .017;
+      source.buffer = buffer;
+      source.connect(filter).connect(gain).connect(output);
+      source.start();
       return;
     }
     const duration = kind === "page" ? .34 : .13;
@@ -838,6 +884,8 @@ export default function Home() {
       setExamStats({ focus: 58, sleep: 46, anxiety: 74 });
       setExamLog([]);
       setRebuildChoices([]);
+      setNightStep(0);
+      setSongLines([]);
       window.localStorage.removeItem("lavender-ending-route");
     }
     if (started) {
@@ -873,6 +921,7 @@ export default function Home() {
     setLookbacks(0);
     setKeepsakeChoice(null);
     setBreathingMoment(false);
+    setNightStep(0);
   };
 
   const advance = () => {
@@ -1348,6 +1397,10 @@ export default function Home() {
           makeExamChoice={makeExamChoice}
           rebuildChoices={rebuildChoices}
           setRebuildChoices={setRebuildChoices}
+          nightStep={nightStep}
+          setNightStep={setNightStep}
+          songLines={songLines}
+          setSongLines={setSongLines}
         />
       )}
 
@@ -1474,7 +1527,7 @@ type InteractionProps = {
   setKeepsakeChoice: (value: "keep" | "release") => void;
   advance: () => void;
   tone: (frequency: number, duration: number, volume?: number) => void;
-  foley: (kind: "page" | "shutter" | "message") => void;
+  foley: (kind: "page" | "shutter" | "message" | "pencil") => void;
   startDelete: () => void;
   stopDelete: () => void;
   startHold: () => void;
@@ -1488,6 +1541,10 @@ type InteractionProps = {
   makeExamChoice: (label: string, change: ExamStats) => void;
   rebuildChoices: string[];
   setRebuildChoices: (value: string[]) => void;
+  nightStep: number;
+  setNightStep: (value: number) => void;
+  songLines: string[];
+  setSongLines: (value: string[]) => void;
 };
 
 function DynamicHeroine({ smiling }: { smiling: boolean }) {
@@ -1591,6 +1648,36 @@ function InteractionPanel(props: InteractionProps) {
     );
   }
 
+  if (beat.interaction === "anchor") {
+    const settled = props.focus >= 88;
+    return (
+      <section className={`interaction-card anchor-interaction ${settled ? "is-settled" : ""}`} onClick={(event) => event.stopPropagation()}>
+        <small>MEMORY ANCHOR / 成人礼合照</small>
+        <div
+          className="anchor-photo"
+          style={{
+            "--anchor": props.focus / 100,
+            backgroundImage: `linear-gradient(145deg,rgba(255,250,244,.34),rgba(92,59,111,.22)),url(${images.ceremony})`,
+          } as CSSProperties}
+        >
+          <span className="anchor-date">高三 · 成人礼</span>
+          <div className="anchor-figures"><i>我</i><b>她</b></div>
+          <em>还有人祝我们99呢！</em>
+          <div className="anchor-rings"><i /><i /><i /></div>
+        </div>
+        <input aria-label="感受这句话留下的锚点" type="range" min="0" max="100" value={props.focus} onChange={(event) => props.setFocus(Number(event.target.value))} />
+        {!settled ? (
+          <p>慢慢拖动。不是把两个人拉近，而是看一句玩笑如何在心里变得越来越重。</p>
+        ) : (
+          <div className="anchor-answer">
+            <p>照片没有改变。改变的是我从此观看它的方式。</p>
+            <button className="interaction-next" onClick={() => { props.tone(392, .42, .035); props.advance(); }}>收起照片 <ChevronRight /></button>
+          </div>
+        )}
+      </section>
+    );
+  }
+
   if (beat.interaction === "qqchat") {
     const reveal = (next: number, frequency = 720) => {
       if (next === 1 || next === 4) props.foley("message");
@@ -1678,6 +1765,43 @@ function InteractionPanel(props: InteractionProps) {
           {props.hold < 100 ? "按住 · 稳住呼吸" : "没有发送"}
         </button>
         {props.hold >= 100 && <button className="interaction-next" onClick={props.advance}>把手机放下 <ChevronRight /></button>}
+      </section>
+    );
+  }
+
+  if (beat.interaction === "threenights") {
+    const nights = [
+      { time: "第一夜 · 01:42", title: "把手机翻过去", copy: "头像没有亮。桌面也不需要再被照亮一次。", action: "屏幕朝下", sound: 246 },
+      { time: "第二夜 · 02:18", title: "把长句留在纸上", copy: "不发送，不等于它没有被认真写过。", action: "折起草稿", sound: 294 },
+      { time: "第三夜 · 03:17", title: "只圈出三道题", copy: "今晚不解决人生，只完成明天还能继续的一小格。", action: "落下笔尖", sound: 392 },
+    ];
+    const complete = props.nightStep >= nights.length;
+    return (
+      <section className={`interaction-card three-nights-interaction ${complete ? "is-complete" : ""}`} onClick={(event) => event.stopPropagation()}>
+        <small>THREE NIGHTS / 距离再见还有十九小时</small>
+        <div className="night-desk">
+          <div className="night-clock">{complete ? "05:43" : nights[props.nightStep].time.split(" · ")[1]}</div>
+          <div className="night-phone"><i /><span /></div>
+          <div className="night-paper"><i /><i /><i /><b>3</b></div>
+          <div className="night-lamp" />
+        </div>
+        <div className="night-timeline">
+          {nights.map((night, index) => <i key={night.time} className={index < props.nightStep ? "done" : index === props.nightStep ? "current" : ""} />)}
+        </div>
+        {!complete ? (
+          <div className="night-copy">
+            <span>{nights[props.nightStep].time}</span>
+            <h2>{nights[props.nightStep].title}</h2>
+            <p>{nights[props.nightStep].copy}</p>
+            <button onClick={() => { props.foley(props.nightStep === 2 ? "pencil" : "page"); props.tone(nights[props.nightStep].sound, .26, .028); props.setNightStep(props.nightStep + 1); }}>{nights[props.nightStep].action} <ChevronRight /></button>
+          </div>
+        ) : (
+          <div className="night-copy night-result">
+            <span>天没有回答任何问题</span>
+            <h2>但桌上的三件事，让今天没有完全失去。</h2>
+            <button className="interaction-next" onClick={props.advance}>等第一束光进来 <ChevronRight /></button>
+          </div>
+        )}
       </section>
     );
   }
@@ -1783,6 +1907,74 @@ function InteractionPanel(props: InteractionProps) {
         </div>
         <input aria-label="从解释回到事实" type="range" min="0" max="100" value={props.focus} onChange={(event) => props.setFocus(Number(event.target.value))} />
         {!released ? <p>慢慢把“解释”推开，只留下确实发生过的事。</p> : <button className="interaction-next" onClick={props.advance}>把证据改名为“记忆” <ChevronRight /></button>}
+      </section>
+    );
+  }
+
+  if (beat.interaction === "songrewrite") {
+    const verses = [
+      {
+        before: "我不后悔遇见你，我后悔没留住。",
+        choices: ["我不后悔遇见你，也不再要求留住。", "我不后悔认真过，也允许故事停在这里。"],
+      },
+      {
+        before: "你值不值得，我说了算。",
+        choices: ["我的真心值不值得，我自己知道。", "认真爱过的价值，不再等谁替它盖章。"],
+      },
+      {
+        before: "我相信我能治愈你。",
+        choices: ["原来我想治愈你，却忘了先接住自己。", "写给你的最后一段，也可以留给现在的我。"],
+      },
+    ];
+    const current = verses[props.songLines.length];
+    const complete = props.songLines.length >= verses.length;
+    return (
+      <section className={`interaction-card song-rewrite-interaction ${complete ? "is-complete" : ""}`} onClick={(event) => event.stopPropagation()}>
+        <small>UNFINISHED SONG / 第三稿</small>
+        <div className="song-sheet">
+          <div className="song-staff"><i /><i /><i /><i /><i /></div>
+          <div className="song-lines">
+            {verses.map((verse, index) => (
+              <article key={verse.before} className={index < props.songLines.length ? "rewritten" : index === props.songLines.length ? "active" : "waiting"}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <del>{verse.before}</del>
+                {props.songLines[index] && <ins>{props.songLines[index]}</ins>}
+              </article>
+            ))}
+          </div>
+        </div>
+        {!complete && current ? (
+          <div className="song-choices">
+            <p>不删掉当年的真心。只把这首歌的主语，慢慢写回自己。</p>
+            {current.choices.map((choice, index) => <button key={choice} onClick={() => { props.foley("pencil"); props.tone(index === 0 ? 523.25 : 440, .46, .03); props.setSongLines([...props.songLines, choice]); }}>{choice}<ChevronRight /></button>)}
+          </div>
+        ) : (
+          <div className="song-finished">
+            <div className="song-chord"><i /><i /><i /><i /></div>
+            <p>旧旋律还在。只是最后一个和弦，第一次落回了自己身上。</p>
+            <button className="interaction-next" onClick={() => { props.tone(392, .55, .025); window.setTimeout(() => props.tone(493.88, .62, .022), 120); window.setTimeout(() => props.tone(587.33, .8, .02), 260); window.setTimeout(props.advance, 720); }}>保存第三稿 <ChevronRight /></button>
+          </div>
+        )}
+      </section>
+    );
+  }
+
+  if (beat.interaction === "turnpage") {
+    const turned = props.focus >= 88;
+    return (
+      <section className={`interaction-card turn-page-interaction ${turned ? "is-turned" : ""}`} onClick={(event) => event.stopPropagation()}>
+        <small>PAGE / NEXT</small>
+        <div className="book-stage" style={{ "--page-turn": props.focus / 100 } as CSSProperties}>
+          <div className="book-back"><span>下一页</span><p>今天仍然在发生。</p></div>
+          <div className="book-page">
+            <span>现在，想象她的样子。</span>
+            <i />
+            <p>淡紫色。报告厅。右前方三排。</p>
+          </div>
+          <div className="book-shadow" />
+        </div>
+        <input aria-label="把书翻到下一页" type="range" min="0" max="100" value={props.focus} onChange={(event) => props.setFocus(Number(event.target.value))} />
+        {!turned ? <p>记得她，不妨碍这只手继续往后翻。</p> : <button className="interaction-next" onClick={() => { props.foley("page"); window.setTimeout(props.advance, 420); }}>让这一页落下 <ChevronRight /></button>}
       </section>
     );
   }

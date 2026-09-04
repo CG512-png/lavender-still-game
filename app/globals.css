@@ -3862,3 +3862,92 @@ button { -webkit-tap-highlight-color: transparent; }
   .reframe-cards blockquote { min-height:0; }
   .scene-stars .heroine-puppet { right:-24%; bottom:4%; width:min(78vw,500px); opacity:.55; }
 }
+
+/* Chapter insert: a joke becomes the lens through which the photograph is reread. */
+.anchor-interaction { width:min(700px,calc(100vw - 40px)); color:#3d3147; }
+.anchor-photo { --anchor:.2; position:relative; overflow:hidden; min-height:245px; margin:14px 0 18px; border:1px solid rgba(91,67,108,.15); border-radius:22px 7px 22px 7px; background-position:center; background-size:cover; box-shadow:0 24px 50px rgba(46,29,58,.15); transform:rotate(calc((var(--anchor) - .5) * 1.2deg)); transition:.25s ease; }
+.anchor-photo::before { content:""; position:absolute; inset:0; background:linear-gradient(105deg,rgba(36,26,44,.74),rgba(55,39,64,.16) 48%,rgba(255,222,180,.22)); opacity:calc(.72 - var(--anchor) * .28); }
+.anchor-date { position:absolute; top:18px; left:20px; z-index:2; color:rgba(255,255,255,.76); font:.62rem/1 ui-monospace,monospace; letter-spacing:.16em; }
+.anchor-figures { position:absolute; inset:0; z-index:2; display:flex; align-items:flex-end; justify-content:center; gap:calc(72px - var(--anchor) * 38px); padding-bottom:30px; transition:gap .2s ease; }
+.anchor-figures i,.anchor-figures b { display:grid; width:54px; height:54px; place-items:center; border:1px solid rgba(255,255,255,.42); border-radius:50%; backdrop-filter:blur(8px); color:white; font:500 1rem/1 "STKaiti","KaiTi",serif; box-shadow:0 12px 28px rgba(24,14,31,.2); }
+.anchor-photo > em { position:absolute; z-index:4; left:50%; top:50%; width:max-content; max-width:86%; transform:translate(-50%,-50%) scale(calc(.78 + var(--anchor) * .32)); color:#fff8ed; font:600 clamp(1.25rem,3vw,2rem)/1.5 "STKaiti","KaiTi",serif; font-style:normal; letter-spacing:.04em; text-shadow:0 5px 24px rgba(31,16,39,.85); opacity:calc(.32 + var(--anchor) * .68); }
+.anchor-rings { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.anchor-rings i { position:absolute; left:50%; top:50%; width:88px; aspect-ratio:1; border:1px solid rgba(236,199,221,.55); border-radius:50%; transform:translate(-50%,-50%) scale(calc(1 + var(--anchor) * 2.6)); opacity:calc(var(--anchor) * .62); }
+.anchor-rings i:nth-child(2) { transform:translate(-50%,-50%) scale(calc(1.5 + var(--anchor) * 3.3)); opacity:calc(var(--anchor) * .35); }
+.anchor-rings i:nth-child(3) { transform:translate(-50%,-50%) scale(calc(2 + var(--anchor) * 4)); opacity:calc(var(--anchor) * .18); }
+.anchor-interaction > input { width:100%; accent-color:#956caf; }
+.anchor-interaction > p,.anchor-answer > p { margin:11px 0 0; color:rgba(56,43,65,.62); font-size:.8rem; line-height:1.7; text-align:center; }
+.anchor-answer { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+
+/* Three nights: time advances through small physical decisions, not a moral score. */
+.three-nights-interaction { width:min(760px,calc(100vw - 40px)); color:#372f43; }
+.night-desk { position:relative; overflow:hidden; min-height:190px; margin:15px 0 12px; border-radius:21px 7px 21px 7px; background:radial-gradient(circle at 74% 25%,rgba(244,207,147,.28),transparent 28%),linear-gradient(145deg,#1d172b,#342343 58%,#241a31); box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 22px 42px rgba(25,15,34,.17); }
+.night-desk::after { content:""; position:absolute; inset:0; background:linear-gradient(100deg,transparent 22%,rgba(255,255,255,.04) 49%,transparent 72%); animation:nightLight 7s ease-in-out infinite; }
+.night-clock { position:absolute; left:24px; top:22px; color:#e1c7ef; font:500 1.5rem/1 ui-monospace,monospace; letter-spacing:.12em; }
+.night-phone { position:absolute; left:12%; bottom:23px; width:105px; height:58px; border:1px solid rgba(226,205,238,.2); border-radius:11px; background:#100d18; transform:rotate(-5deg); box-shadow:0 13px 24px rgba(0,0,0,.28); }
+.night-phone i { position:absolute; inset:6px; border-radius:6px; background:radial-gradient(circle at 50% 50%,rgba(179,131,220,.32),transparent 58%); opacity:.6; animation:phoneFade 3.8s ease-in-out infinite; }
+.night-paper { position:absolute; right:15%; bottom:20px; width:190px; height:115px; border-radius:4px 13px 4px 4px; background:linear-gradient(150deg,#f3eadf,#d9cfdf); transform:rotate(3deg); box-shadow:0 14px 24px rgba(0,0,0,.19); }
+.night-paper i { display:block; width:70%; height:1px; margin:23px auto -12px; background:rgba(77,58,91,.18); }
+.night-paper b { position:absolute; right:18px; bottom:10px; color:rgba(104,69,127,.38); font:600 2.2rem/1 "STKaiti","KaiTi",serif; }
+.night-lamp { position:absolute; right:4%; top:-65px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle,rgba(248,216,160,.2),transparent 66%); animation:lampBreath 5s ease-in-out infinite; }
+.night-timeline { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin:0 0 16px; }
+.night-timeline i { height:3px; border-radius:99px; background:rgba(67,49,78,.1); transition:.35s ease; }
+.night-timeline i.current { background:#a080bd; box-shadow:0 0 16px rgba(157,120,187,.5); }
+.night-timeline i.done { background:#69a89e; }
+.night-copy span { color:#9270aa; font:.65rem/1 ui-monospace,monospace; letter-spacing:.12em; }
+.night-copy h2 { margin:9px 0 7px; color:#473752; font:550 1.42rem/1.45 "STKaiti","KaiTi",serif; }
+.night-copy p { margin:0 0 14px; color:rgba(56,44,65,.6); font-size:.82rem; line-height:1.7; }
+.night-copy button { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:48px; border:1px solid rgba(101,76,119,.16); border-radius:13px 5px 13px 5px; background:linear-gradient(90deg,rgba(148,111,178,.12),rgba(83,159,146,.08)); padding:0 15px; color:#574064; cursor:pointer; }
+.night-copy button:hover { border-color:rgba(130,93,157,.38); transform:translateY(-2px); }
+.night-copy svg { width:17px; }
+
+/* Song rewrite: old lines remain legible while the narrator returns to the subject position. */
+.song-rewrite-interaction { width:min(820px,calc(100vw - 36px)); color:#3b3044; }
+.song-sheet { position:relative; overflow:hidden; margin:14px 0 17px; border:1px solid rgba(89,67,100,.14); border-radius:19px 6px 19px 6px; background:linear-gradient(145deg,rgba(255,252,246,.94),rgba(235,226,239,.88)); padding:22px clamp(16px,3vw,30px); box-shadow:0 18px 42px rgba(50,32,60,.12); }
+.song-staff { position:absolute; inset:0; opacity:.22; pointer-events:none; }
+.song-staff i { display:block; height:1px; margin-top:34px; background:linear-gradient(90deg,transparent,rgba(91,67,104,.35) 12%,rgba(91,67,104,.35) 88%,transparent); }
+.song-lines { position:relative; z-index:2; display:grid; gap:11px; }
+.song-lines article { display:grid; grid-template-columns:26px 1fr; gap:4px 10px; min-height:59px; border-bottom:1px solid rgba(70,52,82,.08); padding:7px 4px 10px; transition:.3s ease; }
+.song-lines article.waiting { opacity:.28; filter:blur(.5px); }
+.song-lines article > span { grid-row:1/3; color:#a080b5; font:.6rem/1.7 ui-monospace,monospace; }
+.song-lines del { color:rgba(62,46,71,.48); font-size:.78rem; line-height:1.5; text-decoration-color:rgba(167,94,111,.48); }
+.song-lines ins { color:#5a4069; font:550 .93rem/1.55 "STKaiti","KaiTi",serif; text-decoration:none; animation:inkArrive .55s ease both; }
+.song-choices > p,.song-finished > p { color:rgba(55,43,63,.6); font-size:.79rem; line-height:1.7; }
+.song-choices { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+.song-choices > p { grid-column:1/-1; margin:0 0 3px; }
+.song-choices button { display:flex; min-height:64px; align-items:center; justify-content:space-between; gap:10px; border:1px solid rgba(91,67,105,.14); border-radius:15px 6px 15px 6px; background:rgba(255,255,255,.42); padding:12px 14px; color:#4f3b59; text-align:left; cursor:pointer; transition:.22s ease; }
+.song-choices button:hover { transform:translateY(-3px); border-color:rgba(133,94,160,.4); box-shadow:0 12px 24px rgba(61,40,72,.09); }
+.song-choices svg { width:16px; flex:none; }
+.song-chord { display:flex; align-items:flex-end; gap:6px; height:28px; margin-top:4px; }
+.song-chord i { width:3px; height:13px; border-radius:99px; background:#9673af; animation:chordPulse 1.4s ease-in-out infinite; }
+.song-chord i:nth-child(2) { height:23px; animation-delay:.12s; }.song-chord i:nth-child(3) { height:17px; animation-delay:.24s; }.song-chord i:nth-child(4) { height:26px; animation-delay:.36s; }
+
+/* The final page turn preserves the memory instead of erasing it. */
+.turn-page-interaction { width:min(740px,calc(100vw - 40px)); color:#3d3146; }
+.book-stage { --page-turn:.2; position:relative; height:245px; margin:15px 0 18px; perspective:1100px; }
+.book-back,.book-page { position:absolute; inset:0; border:1px solid rgba(85,65,96,.14); border-radius:8px 22px 22px 8px; box-shadow:0 22px 42px rgba(47,31,56,.13); padding:35px clamp(24px,6vw,58px); }
+.book-back { background:linear-gradient(145deg,#e4d8e8,#f4eee6); color:#765b82; }
+.book-back span { color:rgba(91,68,105,.45); font:.65rem/1 ui-monospace,monospace; letter-spacing:.16em; }.book-back p { margin-top:55px; font:550 1.25rem/1.6 "STKaiti","KaiTi",serif; }
+.book-page { z-index:2; transform-origin:left center; transform:rotateY(calc(var(--page-turn) * -168deg)); background:linear-gradient(110deg,#f8f2e8,#eee3e9); color:#4d3d54; backface-visibility:hidden; transition:transform .08s linear; }
+.book-page > span { font:550 clamp(1.2rem,2.5vw,1.7rem)/1.6 "STKaiti","KaiTi",serif; }.book-page > i { display:block; width:68px; height:2px; margin:23px 0; background:linear-gradient(90deg,#9a77b1,#d0b36f); }.book-page > p { color:rgba(61,47,69,.48); font-size:.78rem; letter-spacing:.08em; }
+.book-shadow { position:absolute; z-index:3; left:0; top:0; width:25%; height:100%; background:linear-gradient(90deg,rgba(44,29,51,.16),transparent); opacity:calc(var(--page-turn) * .75); pointer-events:none; }
+.turn-page-interaction > input { width:100%; accent-color:#8c6ba4; }.turn-page-interaction > p { color:rgba(56,43,64,.58); font-size:.8rem; text-align:center; }
+
+@keyframes nightLight { 50% { transform:translateX(8%); opacity:.55; } }
+@keyframes phoneFade { 50% { opacity:.18; } }
+@keyframes lampBreath { 50% { transform:scale(1.08); opacity:.7; } }
+@keyframes inkArrive { from { opacity:0; transform:translateX(-7px); filter:blur(2px); } }
+@keyframes chordPulse { 50% { transform:scaleY(.55); opacity:.45; } }
+
+@media (max-width:760px) {
+  .anchor-interaction,.three-nights-interaction,.song-rewrite-interaction,.turn-page-interaction { width:calc(100vw - 24px); }
+  .anchor-photo { min-height:205px; }.anchor-photo > em { max-width:82%; text-align:center; }
+  .anchor-answer { display:block; }.anchor-answer .interaction-next { width:100%; margin-top:10px; }
+  .night-desk { min-height:150px; }.night-paper { right:8%; width:145px; height:88px; }.night-phone { left:7%; width:82px; }
+  .song-choices { grid-template-columns:1fr; }.song-sheet { padding:15px 13px; }.song-lines article { grid-template-columns:22px 1fr; }
+  .book-stage { height:210px; }.book-back,.book-page { padding:26px 24px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .night-desk::after,.night-phone i,.night-lamp,.song-chord i { animation:none!important; }
+}
